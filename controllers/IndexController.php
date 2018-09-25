@@ -14,4 +14,7 @@ class IndexController{
     public function menu(){
         view('index/menu');
     }
+    public function goodsList(){
+        view('index/goodsList');
+    }
 }

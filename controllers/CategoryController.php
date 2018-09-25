@@ -1,8 +1,7 @@
 <?php
 namespace controllers;
 
-class CategoryController
-{
+class CategoryController{
     // 列表页
     public function index()
     {

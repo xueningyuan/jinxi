@@ -1,5 +1,6 @@
 <?php
 define('ROOT',__DIR__.'/../');
+require(ROOT.'libs/functions.php');
 
 function load($class){
     $path = str_replace('\\','/',$class);

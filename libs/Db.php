@@ -24,8 +24,22 @@ class Db
         return self::$_obj;
     }
 
+
+
+
+
+
     public function prepare($sql)
     {
         return $this->_pdo->prepare($sql);        
     }
+
+    // 非预处理的方法
+    public function exec($sql){
+        return $this->_pdo->exec($sql);
+    }
+
+
+
+
 }

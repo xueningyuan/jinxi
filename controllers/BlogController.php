@@ -5,7 +5,11 @@ class BlogController{
     // 列表页
     public function index()
     {
-        view('blog/index');
+        @$blog = new \models\Blog;
+        $data = $blog->findAll();
+        view('blog/index',[
+            'data'=>$data
+        ]);
     }
 
     // 显示添加的表单
@@ -17,7 +21,10 @@ class BlogController{
     // 处理添加表单
     public function insert()
     {
-        
+        $blog = new \models\Blog;
+        $blog->fill($_POST);
+        $blog->insert();
+        header('Location:/');
     }
 
     // 显示修改的表单

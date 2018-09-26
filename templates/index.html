@@ -54,47 +54,23 @@
     <div class="list-div" id="listDiv">
         <table cellpadding="3" cellspacing="1">
             <tr>
-                <th>编号</th>
-                <th>商品名称</th>
-                <th>货号</th>
-                <th>价格</th>
-                <th>上架</th>
-                <th>精品</th>
-                <th>新品</th>
-                <th>热销</th>
-                <th>推荐排序</th>
-                <th>库存</th>
-                <th>操作</th>
+                <?php foreach($fields as $v): ?>
+                <th><?=$v['Comment']?>:</th>
+                <?php endforeach; ?>
+                <th>操作:</th>
             </tr>
-            <foreach name="list" item="val">
-            <tr>
-                <td align="center"><{$val.goods_id}></td>
-                <td align="center" class="first-cell"><span><{$val.goods_name}></span></td>
-                <td align="center"><span onclick=""><{$val.goods_sn}></span></td>
-                <td align="center"><span><{$val.shop_price}></span></td>
-                <td align="center"><img src="<if condition='($val.is_onsale eq     1)'> ./Images/yes.gif <else/> ./Images/no.gif </if>"/></td>
-                <td align="center"><img src="<if condition='($val.is_best eq     1)'> ./Images/yes.gif <else/> ./Images/no.gif </if>"/></td>
-                <td align="center"><img src="<if condition='($val.is_new eq     1)'> ./Images/yes.gif <else/> ./Images/no.gif </if>"/></td>
-                <td align="center"><img src="<if condition='($val.is_hot eq     1)'> ./Images/yes.gif <else/> ./Images/no.gif </if>"/></td>
-                <td align="center"><span>100</span></td>
-                <td align="center"><span><{$val.goods_number}></span></td>
-                <td align="center">
-                <a href="__APP__/Goods/?goods_id=<{$val.goods_id}>" target="_blank" title="查看"><img src="./Images/icon_view.gif" width="16" height="16" border="0" /></a>
-                <a href="__GROUP__/Goods/goodsEdit?goods_id=<{$val.goods_id}>" title="编辑"><img src="./Images/icon_edit.gif" width="16" height="16" border="0" /></a>
-                <a href="__GROUP__/Goods/goodsTrash?goods_id=<{$val.goods_id}>" onclick="" title="回收站"><img src="./Images/icon_trash.gif" width="16" height="16" border="0" /></a></td>
-            </tr>
-            </foreach>
+
         </table>
 
     <!-- 分页开始 -->
-        <table id="page-table" cellspacing="0">
+        <!-- <table id="page-table" cellspacing="0">
             <tr>
                 <td width="80%">&nbsp;</td>
                 <td align="center" nowrap="true">
                     <{$showPage}>
                 </td>
             </tr>
-        </table>
+        </table> -->
     <!-- 分页结束 -->
     </div>
 </form>

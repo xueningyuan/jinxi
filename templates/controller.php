@@ -5,7 +5,11 @@ class <?=$cname?>
     // 列表页
     public function index()
     {
-        view('<?=$tableName?>/index');
+        @$<?=$tableName?> = new \models\<?=$mname?>;
+        $data = $<?=$tableName?>->findAll();
+        view('<?=$tableName?>/index',[
+            'data'=>$data
+        ]);
     }
 
     // 显示添加的表单
@@ -17,7 +21,10 @@ class <?=$cname?>
     // 处理添加表单
     public function insert()
     {
-
+        $<?=$tableName?> = new \models\<?=$mname?>;
+        $<?=$tableName?>->fill($_POST);
+        $<?=$tableName?>->insert();
+        header('Location:/');
     }
 
     // 显示修改的表单

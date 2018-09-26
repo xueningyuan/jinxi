@@ -7,6 +7,7 @@ class CodeController
         $tableName = $_GET['name'];
 
         $cname = ucfirst($tableName).'Controller';
+        $mname = ucfirst($tableName);
         // 加载模板
         ob_start();
         include(ROOT.'templates/controller.php');
@@ -14,7 +15,6 @@ class CodeController
         file_put_contents(ROOT.'controllers/'.$cname.'.php',"<?php\r\n".$str);
 
         // 生成模型
-        $mname = ucfirst($tableName);
         ob_start();
         include(ROOT.'templates/model.php');
         $str = ob_get_clean();
@@ -32,6 +32,7 @@ class CodeController
          $stmt->execute();
          // 取出数据
          $fields = $stmt->fetchAll( \PDO::FETCH_ASSOC );
+         
         
         // create.html
         ob_start();

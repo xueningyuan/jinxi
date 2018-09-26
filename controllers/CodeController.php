@@ -22,6 +22,16 @@ class CodeController
 
         // 生成静态页面
         @mkdir(ROOT . 'views/'.$tableName, 0777);
+
+         // 取出这个表中所有的字段信息
+         $sql = "SHOW FULL FIELDS FROM $tableName";
+         $db = \libs\Db::make();
+         // 预处理
+         $stmt = $db->prepare($sql);
+         // 执行 SQL
+         $stmt->execute();
+         // 取出数据
+         $fields = $stmt->fetchAll( \PDO::FETCH_ASSOC );
         
         // create.html
         ob_start();

@@ -1,29 +1,29 @@
 <?php
 namespace controllers;
 
-class GoodsController{
+class BlogController{
     // 列表页
     public function index()
     {
-        view('goods/index');
+        view('blog/index');
     }
 
     // 显示添加的表单
     public function create()
     {
-        view('goods/create');
+        view('blog/create');
     }
 
     // 处理添加表单
     public function insert()
     {
-
+        
     }
 
     // 显示修改的表单
     public function edit()
     {
-        view('goods/edit');
+        view('blog/edit');
     }
 
     // 修改表单的方法

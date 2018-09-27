@@ -2,7 +2,8 @@ namespace models;
 
 class <?=$mname?> extends Model
 {
-    protected $table = <?=$tableName?>;
-    // 设置允许接受的字段
-    protected $fillable = ['title','content','is_show'];
+    // 设置这个模型对应的表
+    protected $table = '<?=$tableName?>';
+    // 设置允许接收的字段
+    protected $fillable = ['<?=$fillable?>'];
 }

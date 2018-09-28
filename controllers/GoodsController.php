@@ -4,6 +4,10 @@ namespace controllers;
 use models\Goods;
 
 class GoodsController{
+    public function _delete_img(){
+        $model = new Goods;
+        $data = $model->_delete_img();
+    }
     // ajax 获取子分类
     public function ajax_get_cat(){
         $id = (int)$_GET['id'];
@@ -45,8 +49,11 @@ class GoodsController{
     {
         $model = new Goods;
         $data=$model->findOne($_GET['id']);
+        $model = new \models\Category;
+        $topCat = $model->getCat();
         view('goods/edit', [
-            'data' => $data,    
+            'data' => $data, 
+            'topCat' => $topCat['data'],   
         ]);
     }
 

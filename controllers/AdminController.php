@@ -1,38 +1,38 @@
 <?php
 namespace controllers;
 
-use models\Goods;
+use models\Admin;
 
-class GoodsController{
+class AdminController{
     // 列表页
     public function index()
     {
-        $model = new Goods;
+        $model = new Admin;
         $data = $model->findAll();
-        view('goods/index', $data);
+        view('admin/index', $data);
     }
 
     // 显示添加的表单
     public function create()
     {
-        view('goods/create');
+        view('admin/create');
     }
 
     // 处理添加表单
     public function insert()
     {
-        $model = new Goods;
+        $model = new Admin;
         $model->fill($_POST);
         $model->insert();
-        redirect('/goods/index');
+        redirect('/admin/index');
     }
 
     // 显示修改的表单
     public function edit()
     {
-        $model = new Goods;
+        $model = new Admin;
         $data=$model->findOne($_GET['id']);
-        view('goods/edit', [
+        view('admin/edit', [
             'data' => $data,    
         ]);
     }
@@ -40,17 +40,17 @@ class GoodsController{
     // 修改表单的方法
     public function update()
     {
-        $model = new Goods;
+        $model = new Admin;
         $model->fill($_POST);
         $model->update($_GET['id']);
-        redirect('/goods/index');
+        redirect('/admin/index');
     }
 
     // 删除
     public function delete()
     {
-        $model = new Goods;
+        $model = new Admin;
         $model->delete($_GET['id']);
-        redirect('/goods/index');
+        redirect('/admin/index');
     }
 }

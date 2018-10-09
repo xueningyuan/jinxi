@@ -3,7 +3,7 @@ namespace controllers;
 
 use models\Goods;
 
-class GoodsController{
+class GoodsController extends BaseController{
     // 列表页
     public function index()
     {

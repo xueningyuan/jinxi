@@ -1,5 +1,16 @@
 <?php
 define('ROOT',__DIR__.'/../');
+// 设置时区
+date_default_timezone_set('PRC');
+
+// 使用 redis 保存 SESSION
+ini_set('session.save_handler', 'redis');
+// 设置 redis 服务器的地址、端
+ini_set('session.save_path', 'tcp://127.0.0.1:6379?database=15');
+
+session_start();
+
+// 引入函数文件
 require(ROOT.'libs/functions.php');
 
 function load($class){

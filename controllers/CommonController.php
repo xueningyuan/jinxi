@@ -3,7 +3,7 @@ namespace controllers;
 
 use models\Common;
 
-class CommonController{
+class CommonController extends BaseController{
     // 列表页
     public function index()
     {

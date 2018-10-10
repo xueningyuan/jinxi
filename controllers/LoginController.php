@@ -5,12 +5,7 @@ use models\Admin;
 
 class LoginController
 {
-    // public function test()
-    // {
-    //     $model = new Admin;
-    //     $model->getUalPath(7);
-        
-    // }
+
     // 显示登录的表单
     public function login()
     {

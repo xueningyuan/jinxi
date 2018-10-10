@@ -4,6 +4,17 @@ namespace controllers;
 use models\Goods;
 
 class GoodsController extends BaseController{
+    // 获取子分类
+    public function ajax_get_cat()
+    {
+        $id = (int)$_GET['id'];
+        // 根据这个ID查询子分类
+        $model = new \models\Category;
+        $data = $model->getCat($id);
+        // 转成 JSON
+        echo json_encode($data);
+    }
+
     // 列表页
     public function index()
     {
@@ -15,7 +26,13 @@ class GoodsController extends BaseController{
     // 显示添加的表单
     public function create()
     {
-        view('goods/create');
+        // 取出一级分类
+        $model = new \models\Category;
+        $topCat = $model->getCat();
+
+        view('goods/create', [
+            'topCat' => $topCat['data'],
+        ]);
     }
 
     // 处理添加表单
@@ -31,9 +48,16 @@ class GoodsController extends BaseController{
     public function edit()
     {
         $model = new Goods;
-        $data=$model->findOne($_GET['id']);
+        $data=$model->getFullInfo($_GET['id']);
+
+        $model = new \models\Category;
+        $topCat = $model->getCat();
+
+
+
         view('goods/edit', [
-            'data' => $data,    
+            'data' => $data,
+            'topCat' => $topCat['data']    
         ]);
     }
 

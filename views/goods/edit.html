@@ -141,6 +141,7 @@
                     </div>
                 <?php else: ?>
             <?php foreach($data['images'] as $v): ?>
+            <hr>
             <div id="image-container">
                 <table width="100%">
                     <tr>
@@ -149,8 +150,8 @@
                             <div class="img_preview">
                                 <img src="<?=$v['path']?>" width="120" height="120" alt="">
                             </div>
-                            <input class="preview" type='file' name='image[]'>
-                            <font color="red">*</font>
+                            <!-- <input class="preview" type='file' name='image[]'> -->
+                            <!-- <font color="red">*</font> -->
                         </td>
                     </tr>
                     <tr>

@@ -21,7 +21,7 @@ class BaseController
         // 获取将要访问的路径 
         $path = isset($_SERVER['PATH_INFO'])? trim($_SERVER['PATH_INFO'], '/') : 'index/index';
         // 设置一个白名单
-        $whiteList = ['index/index','index/menu','index/top','index/main'];
+        $whiteList = ['/upload/upload','index/index','index/menu','index/top','index/main'];
         // 判断是否有权访问
         if(!in_array($path, array_merge($whiteList, $_SESSION['url_path'])))
         {

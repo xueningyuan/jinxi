@@ -26,4 +26,26 @@ class Brand extends Model
             @unlink(ROOT.'public'.$ol['logo']);
         }
     }
+
+    // 添加之后执行的钩子函数
+    public function _after_write()
+    {   
+        // 构造数据（上传七牛云）
+        $data = [
+            'logo' => $this->data['logo'],
+            'id' => $this->data['id'] ? $this->data['id']:$_GET['id'],
+            'table' => 'brand',
+            'column' => 'logo',
+        ];
+
+        $client = new \Predis\Client([
+            'scheme' => 'tcp',
+            'host'   => 'localhost',
+            'port'   => 6379,
+        ]);
+
+        // 转成字符串保存到队列中
+        $client->lpush('jxshop:niqui', serialize($data));
+
+    }
 }

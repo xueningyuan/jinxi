@@ -74,6 +74,24 @@ class Goods extends Model
     // 添加、修改之后执行
     public function _after_write()
     {
+          // 连接 Redis
+          $client = new \Predis\Client([
+            'scheme' => 'tcp',
+            'host'   => 'localhost',
+            'port'   => 6379,
+        ]);
+
+        // 把LOGO图片添加到消息队列中
+        $imageData = [
+            'id' => $this->data['id'] ? $this->data['id']:$_GET['id'],
+            'logo' => $this->data['logo'],
+            'table' => 'goods',
+            'column' => 'logo',
+        ];
+
+        $client->lpush('jxshop:niqui', serialize($imageData));
+
+
         $goodsId = isset($_GET['id']) ? $_GET['id'] : $this->data['id'];
         /**
          * 处理商品属性
@@ -148,6 +166,16 @@ class Goods extends Model
                     $goodsId,
                     $path,
                 ]);
+
+                // 获取 ID
+                $id = $this->_db->lastInsertId();
+                
+                $client->lpush('jxshop:niqui', serialize([
+                    'id' => $id,
+                    'logo' => $path,
+                    'table' => 'goods_image',
+                    'column' => 'path'
+                ]));
             }
         }
         /**
